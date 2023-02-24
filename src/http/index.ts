@@ -3,10 +3,11 @@ import { Container } from 'inversify';
 import Types from '../di/types';
 import HealthController from './routes/health-controller';
 import HttpServer from './server/http-server';
+import registerMiddleware from './middleware';
 
 function register(container: Container): void {
     registerInfrastructure(container);
-    registerMiddlewares();
+    registerMiddleware(container);
     registerControllers(container);
 }
 
@@ -17,7 +18,5 @@ function registerControllers(container: Container) {
 function registerInfrastructure(container: Container) {
     container.bind(Types.HTTP.Server).to(HttpServer);
 }
-
-function registerMiddlewares() { }
 
 export default register;

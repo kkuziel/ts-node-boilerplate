@@ -3,15 +3,15 @@ import { injectable } from 'inversify';
 import Logger from './logger';
 
 @injectable()
-class CustomLoggerImpl implements Logger {
+class ConsoleLogger implements Logger {
     constructor(private logger = console) { }
 
     debug(message: string, ...args: unknown[]): void {
-        this.logger.info(message, ...args);
+        this.logger.log(message, ...args);
     }
 
     info(message: string, ...args: unknown[]): void {
-        this.logger.info(message, ...args);
+        this.logger.log(message, ...args);
     }
 
     error(message: string, ...args: unknown[]): void {
@@ -19,4 +19,4 @@ class CustomLoggerImpl implements Logger {
     }
 }
 
-export default CustomLoggerImpl;
+export default ConsoleLogger;

@@ -1,15 +1,10 @@
 module.exports = {
     testEnvironment: 'node',
-    globals: {
-        'ts-jest': {
-            tsconfig: '<rootDir>/tsconfig.test.json',
-        },
-    },
-    setupFilesAfterEnv: ['jest-extended'],
+    setupFilesAfterEnv: ['jest-extended', './jest.setup.ts'],
     roots: ['<rootDir>/test/unit'],
     testMatch: ['**/?(*.)+(spec|test).+(ts|tsx|js)'],
     transform: {
-        '^.+\\.(ts|tsx)$': 'ts-jest',
+        '^.+\\.(ts|tsx)$': ['ts-jest', '<rootDir>/tsconfig.json'],
     },
     maxWorkers: 3,
     resetMocks: true,
