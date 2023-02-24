@@ -1,0 +1,6 @@
+{
+    "ignore": ["**/*.spec.ts", "node_modules"],
+    "watch": ["src"],
+    "exec": "yarn nodemon:docker",
+    "ext": "ts"
+}
