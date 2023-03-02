@@ -8,9 +8,9 @@ WORKDIR /home/node/app
 
 COPY --chown=node:node . .
 
-RUN yarn install --frozen-lockfile
-RUN yarn build
-RUN yarn install --production --frozen-lockfile
+RUN npm install --frozen-lockfile
+RUN npm run build
+RUN npm install --production --frozen-lockfile
 
 # BUILD
 FROM base AS build
