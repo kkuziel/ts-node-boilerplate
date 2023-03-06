@@ -1,6 +1,10 @@
 # BASE
 FROM node:18-alpine AS base
 
+RUN apk update && \
+    apk upgrade && \
+    apk add --no-cache tini
+
 # DEPENDENCIES
 FROM base AS dependencies
 
@@ -22,6 +26,7 @@ ENV PORT 3000
 EXPOSE 3000
 
 COPY --from=dependencies --chown=node:node /home/node/app/node_modules ./node_modules
+COPY --from=dependencies --chown=node:node /home/node/app/package.json ./package.json
 COPY --from=dependencies --chown=node:node /home/node/app/dist ./dist
 
 USER node

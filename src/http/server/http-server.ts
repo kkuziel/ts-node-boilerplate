@@ -1,15 +1,15 @@
 import 'reflect-metadata';
-import Server from './server';
 import { Application, RequestHandler } from 'express';
 import { Server as NativeServer } from 'http';
 import { InversifyExpressServer } from 'inversify-express-utils';
 import { interfaces, inject, injectable } from 'inversify';
 
+import Server from './server';
 import { Config } from '../../config/config';
-
 import Types from '../../di/types';
 import Logger from '../../application/logger';
 import Provider from '../middleware/provider';
+import { setApiDocs } from '../routes';
 
 @injectable()
 export default class HTTPServerImpl implements Server {
@@ -43,6 +43,7 @@ export default class HTTPServerImpl implements Server {
     private setConfig(app: InversifyExpressServer): void {
         app.setConfig((server: Application) => {
             this.middlewareProvider.provide().forEach(md => this.setMiddleware(server, md));
+            setApiDocs(server);
         });
     }
 
