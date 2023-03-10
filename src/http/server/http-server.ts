@@ -9,7 +9,7 @@ import { Config } from '../../config/config';
 import Types from '../../di/types';
 import Logger from '../../application/logger';
 import Provider from '../middleware/provider';
-import { setApiDocs } from '../routes';
+import { setApiDocs } from '../routes/api-docs';
 
 @injectable()
 export default class HTTPServerImpl implements Server {
